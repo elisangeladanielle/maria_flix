@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_bootstrap import Bootstrap
 from flask_restful import Resource, Api
 
 from pessoa_psycopg import retorna_pessoas, insere_pessoa, retorna_pessoa, remove_pessoa, atualiza_pessoa
@@ -7,10 +8,11 @@ from assistidos_psycopg import retorna_assistidoss, retorna_assistidos, insere_a
 
 app = Flask(__name__)
 api = Api(app)
+Bootstrap(app)
 
-class HelloWorld(Resource):
+class MariaFlix(Resource):
     def get(self):
-        return "Uhuuuul"
+        return "Maria Flix"
 
 class Pessoa(Resource):
     def get(self):
@@ -86,7 +88,7 @@ class AssistidosDetail(Resource):
 
 
 #declarando endpoint (a barra) = raiz da api -- se colocar a url sem a barra do final, tem que vir o resultado tb
-api.add_resource(HelloWorld, "/")
+api.add_resource(MariaFlix, "/")
 api.add_resource(Pessoa, "/pessoas")
 api.add_resource(PessoaDetail, "/pessoa/<int:id>")
 api.add_resource(Filme_serie, "/filme_series")
